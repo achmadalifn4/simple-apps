@@ -1,0 +1,22 @@
+services:
+  app:
+    container_name: simple-apps
+    image: achmadalifn4/simple-apps
+    build: ./app
+    ports:
+      - 3000:3000
+    env_file:
+      - ./app/.env
+    volumes:
+      - simple-apps:/app
+
+  php:
+    image: phpmyadmin
+    restart: always
+    container_name: php
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=172.17.0.1
+volumes:
+  simple-apps:
